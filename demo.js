@@ -28,6 +28,11 @@ function addItem(e) {
      li.appendChild(editbtn)
 
     itemList.appendChild(li);
+    //add date in local storage item as key and its description as value
+    var storeDatainLocal =localStorage.setItem(newItem,newDescription)
+   
+    
+    
 }
 //creat remove item from list
 itemList.addEventListener('click', removeItem)
@@ -59,3 +64,4 @@ function filterItems(e){
       }
     });
   }
+  
