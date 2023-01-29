@@ -29,8 +29,15 @@ function addItem(e) {
 
     itemList.appendChild(li);
     //add date in local storage item as key and its description as value
-    var storeDatainLocal =localStorage.setItem(newItem,newDescription)
-   
+    //var storeDatainLocal =localStorage.setItem("userName",newItem)
+    //var storeDatainLocal =localStorage.setItem("userDescription",newDescription)
+    // noe we can store data in form of object
+    const obj={
+      newItem,
+      newDescription,
+    }
+    localStorage.setItem("data",JSON.stringify(obj))
+    
     
     
 }
