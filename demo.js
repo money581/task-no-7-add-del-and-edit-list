@@ -48,7 +48,8 @@ function addItem(e) {
     var old_Data=JSON.parse(localStorage.getItem('data'));
     old_Data.push(obj);
     localStorage.setItem("data",JSON.stringify(old_Data))
-   
+
+  
     
     
 }
@@ -62,6 +63,7 @@ function removeItem(e) {
             itemList.removeChild(li)
         }
     }
+    localStorage.removeItem('data')
 
 }
 // Filter event
