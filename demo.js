@@ -32,12 +32,23 @@ function addItem(e) {
     //var storeDatainLocal =localStorage.setItem("userName",newItem)
     //var storeDatainLocal =localStorage.setItem("userDescription",newDescription)
     // noe we can store data in form of object
-    const obj={
+    // const obj={
+    //   newItem,
+    //   newDescription,
+    // }
+    // localStorage.setItem("data",JSON.stringify(obj))
+    //now we can update that data in local sgtorage not delete when we update data
+     const obj={
       newItem,
       newDescription,
     }
-    localStorage.setItem("data",JSON.stringify(obj))
-    
+    if (localStorage.getItem('data') == null){
+      localStorage.setItem('data','[]')
+    }
+    var old_Data=JSON.parse(localStorage.getItem('data'));
+    old_Data.push(obj);
+    localStorage.setItem("data",JSON.stringify(old_Data))
+   
     
     
 }
