@@ -2,6 +2,8 @@
 var form = document.getElementById('addForm');
 var itemList = document.getElementById('items');
 var filter = document.getElementById('filter');
+ editbutton = document.getElementById('editbtn')
+
 form.addEventListener('submit', addItem);
 function addItem(e) {
     e.preventDefault();
@@ -21,8 +23,10 @@ function addItem(e) {
     deleteBtn.appendChild(document.createTextNode('x'));
     li.appendChild(deleteBtn)
      //add edit btn element with new li
+     
      var editbtn = document.createElement('button')
-     editbtn.className = 'btn btn-warning btn-sm float-right'
+    
+     editbtn.className = 'btn btn-warning btn-sm float-right edit'
      editbtn.style='margin-right: 4px'
      editbtn.appendChild(document.createTextNode('edit'))
      li.appendChild(editbtn)
@@ -53,6 +57,7 @@ function addItem(e) {
     
     
 }
+
 //creat remove item from list
 itemList.addEventListener('click', removeItem)
 function removeItem(e) {
@@ -84,4 +89,81 @@ function filterItems(e){
       }
     });
   }
+//function editList(currElem){
+
+  //alert('test');
+  // if (currElem.textContent == "done"){
+  //   currElem.textContent ="edit"
+  //   let currListName = currElem.parentElement.firstChild.value
+    
+  //   let currEditname = document.createElement('li')
+  //   currEditname.className="list-group-item"
+  //   currEditname.textContent=currListName
+  //     currElem.parentElement.firstChild.replaceWith(currEditname)
+  // }
+  // else {
+  //   currElem.textContent="done"
+  //   //console.log(currElem.parentElement)
+  //   let currListName = currElem.parentElement.firstChild.textContent
+   
+  //   //console.log(currListName)
+  //   let currInput = document.createElement('input')
+  //   currInput.type='text'
+  //   currInput.className="form-control mr-2"
+  // currInput.value=currListName
+  // //console.log(currInput)
+  // currElem.parentElement.firstChild.replaceWith(currInput)
+  // }
+//   let addTaskBtn=document.getElementById('addTask')
+//   let saveTaskBtn=document.getElementById('saveTask')
+//   addTaskBtn.style.display='none'
+//   saveTaskBtn.style.display='block'
+//   // let currListName = currElem.parentElement.firstChild.textContent
   
+//   // let newInput = document.getElementById('item')
+//   // newInput.value=currListName
+ 
+
+ 
+// //   form.addEventListener('submit', addItem);
+// // function addItem(e) {
+// //     e.preventDefault();
+// //     console.log(e)
+// //     let newEditItem=document.getElementById('item').value
+// //     console.log(newEditItem)
+// //     //currElem.parentElement.firstChild.textContent.replaceWith(newEditItem)
+// // }
+ 
+// }
+//creat remove item from list
+itemList.addEventListener('click', editItem)
+function editItem(e) {
+   
+    let addTaskBtn=document.getElementById('addTask')
+  let saveTaskBtn=document.getElementById('saveTask')
+   addTaskBtn.style.display='none'
+  saveTaskBtn.style.display='block'
+    if (e.target.classList.contains('edit')) {
+      
+     let currElem = e.target.parentElement
+    
+ let newInput = document.getElementById('item')
+ newInput.value=currElem.firstChild.textContent
+ form.addEventListener('click', updateItem)
+function updateItem(e) {
+e.preventDefault()
+e.stopPropagation()
+  if (e.target.classList.contains('updatebtn')){
+    
+    var currValue = document.getElementById('item')
+    console.log(currValue.value)
+     console.log(currElem)
+
+    addTaskBtn.style.display='block'
+    saveTaskBtn.style.display='none'
+    currElem.firstChild.textContent=currValue.value
+    
+  }
+}
+    }
+}
