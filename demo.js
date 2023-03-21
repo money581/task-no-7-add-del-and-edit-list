@@ -1,4 +1,5 @@
 //here we want creat a property by whuch we can add a new list by click submit buttuon
+console.log("aman")
 var form = document.getElementById('addForm');
 var itemList = document.getElementById('items');
 var filter = document.getElementById('filter');
@@ -7,10 +8,12 @@ var filter = document.getElementById('filter');
 form.addEventListener('submit', addItem);
 function addItem(e) {
     e.preventDefault();
+    console.log(e)
 
     //taking input
     var newItem = document.getElementById('item').value
     var newDescription = document.getElementById('description').value
+    
     //create new li
     var li = document.createElement('li')
     li.className = 'list-group-item'
@@ -146,6 +149,7 @@ function editItem(e) {
     if (e.target.classList.contains('edit')) {
       
      let currElem = e.target.parentElement
+     console.log(currElem)
     
  let newInput = document.getElementById('item')
  newInput.value=currElem.firstChild.textContent
