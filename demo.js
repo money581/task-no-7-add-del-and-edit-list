@@ -1,5 +1,5 @@
 //here we want creat a property by whuch we can add a new list by click submit buttuon
-console.log("aman")
+//console.log("aman")
 var form = document.getElementById('addForm');
 var itemList = document.getElementById('items');
 var filter = document.getElementById('filter');
@@ -49,17 +49,24 @@ function addItem(e) {
       newItem,
       newDescription,
     }
-    if (localStorage.getItem('data') == null){
-      localStorage.setItem('data','[]')
-    }
-    var old_Data=JSON.parse(localStorage.getItem('data'));
-    old_Data.push(obj);
-    localStorage.setItem("data",JSON.stringify(old_Data))
+    // if (localStorage.getItem('data') == null){
+    //   localStorage.setItem('data','[]')
+    // }
+    // var old_Data=JSON.parse(localStorage.getItem('data'));
+    // old_Data.push(obj);
+    // localStorage.setItem("data",JSON.stringify(old_Data))
 
-  
-    
+  axios.post("https://crudcrud.com/api/f430306a1b4a49799bad28ab6e36cfe7/firstdatacrud",obj)
+  .then((response)=>{
+   
+    console.log(response)
+  })
+    .catch((err)=>{
+      console.log("err")
+    })
     
 }
+
 
 //creat remove item from list
 itemList.addEventListener('click', removeItem)
