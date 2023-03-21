@@ -56,7 +56,7 @@ function addItem(e) {
     // old_Data.push(obj);
     // localStorage.setItem("data",JSON.stringify(old_Data))
 
-  axios.post("https://crudcrud.com/api/f430306a1b4a49799bad28ab6e36cfe7/firstdatacrud",obj)
+  axios.post("https://crudcrud.com/api/df226c4a8395479da9cdde3a54ee4501/firstdatacrud",obj)
   .then((response)=>{
    
     console.log(response)
@@ -66,6 +66,26 @@ function addItem(e) {
     })
     
 }
+window.addEventListener("DOMContentLoaded",()=>{
+  axios.get("https://crudcrud.com/api/df226c4a8395479da9cdde3a54ee4501/firstdatacrud")
+  .then((response)=>{
+    console.log(response)
+      for(var i=0;i<response.data.length;i++){
+        
+        var li = document.createElement('li')
+    li.className = 'list-group-item'
+     
+    li.innerHTML = response.data[i].newItem + " " + response.data[i].newDescription
+    
+
+  itemList.appendChild(li);
+ 
+    }
+  })
+  .catch((err)=>{
+    console.log("err")
+  })
+})
 
 
 //creat remove item from list
@@ -99,6 +119,11 @@ function filterItems(e){
       }
     });
   }
+
+
+// abhi ke liye edit functionaity remove kar di hai
+
+
 //function editList(currElem){
 
   //alert('test');
@@ -146,35 +171,35 @@ function filterItems(e){
  
 // }
 //creat remove item from list
-itemList.addEventListener('click', editItem)
-function editItem(e) {
+// itemList.addEventListener('click', editItem)
+// function editItem(e) {
    
-    let addTaskBtn=document.getElementById('addTask')
-  let saveTaskBtn=document.getElementById('saveTask')
-   addTaskBtn.style.display='none'
-  saveTaskBtn.style.display='block'
-    if (e.target.classList.contains('edit')) {
+//     let addTaskBtn=document.getElementById('addTask')
+//   let saveTaskBtn=document.getElementById('saveTask')
+//    addTaskBtn.style.display='none'
+//   saveTaskBtn.style.display='block'
+//     if (e.target.classList.contains('edit')) {
       
-     let currElem = e.target.parentElement
-     console.log(currElem)
+//      let currElem = e.target.parentElement
+//      console.log(currElem)
     
- let newInput = document.getElementById('item')
- newInput.value=currElem.firstChild.textContent
- form.addEventListener('click', updateItem)
-function updateItem(e) {
-e.preventDefault()
-e.stopPropagation()
-  if (e.target.classList.contains('updatebtn')){
+//  let newInput = document.getElementById('item')
+//  newInput.value=currElem.firstChild.textContent
+//  form.addEventListener('click', updateItem)
+// function updateItem(e) {
+// e.preventDefault()
+// e.stopPropagation()
+//   if (e.target.classList.contains('updatebtn')){
     
-    var currValue = document.getElementById('item')
-    console.log(currValue.value)
-     console.log(currElem)
+//     var currValue = document.getElementById('item')
+//     console.log(currValue.value)
+//      console.log(currElem)
 
-    addTaskBtn.style.display='block'
-    saveTaskBtn.style.display='none'
-    currElem.firstChild.textContent=currValue.value
+//     addTaskBtn.style.display='block'
+//     saveTaskBtn.style.display='none'
+//     currElem.firstChild.textContent=currValue.value
     
-  }
-}
-    }
-}
+//   }
+// }
+//     }
+// }
