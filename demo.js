@@ -4,16 +4,13 @@ var form = document.getElementById('addForm');
 var itemList = document.getElementById('items');
 var filter = document.getElementById('filter');
  editbutton = document.getElementById('editbtn')
-
 form.addEventListener('submit', addItem);
 function addItem(e) {
     e.preventDefault();
     console.log(e)
-
     //taking input
     var newItem = document.getElementById('item').value
     var newDescription = document.getElementById('description').value
-    
     //create new li
     var li = document.createElement('li')
     li.className = 'list-group-item'
@@ -25,15 +22,12 @@ function addItem(e) {
     deleteBtn.className = 'btn btn-danger btn-sm float-right delete'
     deleteBtn.appendChild(document.createTextNode('x'));
     li.appendChild(deleteBtn)
-     //add edit btn element with new li
-     
+     //add edit btn element with new li 
      var editbtn = document.createElement('button')
-    
      editbtn.className = 'btn btn-warning btn-sm float-right edit'
      editbtn.style='margin-right: 4px'
      editbtn.appendChild(document.createTextNode('edit'))
      li.appendChild(editbtn)
-
     itemList.appendChild(li);
     //add date in local storage item as key and its description as value
     //var storeDatainLocal =localStorage.setItem("userName",newItem)
@@ -55,38 +49,39 @@ function addItem(e) {
     // var old_Data=JSON.parse(localStorage.getItem('data'));
     // old_Data.push(obj);
     // localStorage.setItem("data",JSON.stringify(old_Data))
-
-  axios.post("https://crudcrud.com/api/df226c4a8395479da9cdde3a54ee4501/firstdatacrud",obj)
+  axios.post("https://crudcrud.com/api/801ced56afbd44238954ef302144548c/firstdatacrud",obj)
   .then((response)=>{
-   
     console.log(response)
   })
     .catch((err)=>{
       console.log("err")
-    })
-    
+    })  
 }
 window.addEventListener("DOMContentLoaded",()=>{
-  axios.get("https://crudcrud.com/api/df226c4a8395479da9cdde3a54ee4501/firstdatacrud")
+  axios.get("https://crudcrud.com/api/801ced56afbd44238954ef302144548c/firstdatacrud")
   .then((response)=>{
     console.log(response)
-      for(var i=0;i<response.data.length;i++){
-        
+      for(var i=0;i<response.data.length;i++){   
         var li = document.createElement('li')
     li.className = 'list-group-item'
-     
+     li.id= response.data[i]._id;
+    var deleteBtn = document.createElement('button')
+    deleteBtn.className = 'btn btn-danger btn-sm float-right delete'
+    deleteBtn.appendChild(document.createTextNode('x'));
+    var editbtn = document.createElement('button')
+     editbtn.className = 'btn btn-warning btn-sm float-right edit'
+     editbtn.style='margin-right: 4px'
+     editbtn.appendChild(document.createTextNode('edit'))
     li.innerHTML = response.data[i].newItem + " " + response.data[i].newDescription
-    
-
-  itemList.appendChild(li);
- 
+    li.appendChild(deleteBtn)
+    li.appendChild(editbtn)
+  itemList.appendChild(li );
     }
   })
   .catch((err)=>{
     console.log("err")
   })
 })
-
 
 //creat remove item from list
 itemList.addEventListener('click', removeItem)
@@ -95,11 +90,13 @@ function removeItem(e) {
     if (e.target.classList.contains('delete')) {
         if (confirm('are u sure?')) {
             var li = e.target.parentElement;
-            itemList.removeChild(li)
+            const id = li.id;
+  //console.log(id)
+  axios.delete(`https://crudcrud.com/api/801ced56afbd44238954ef302144548c/firstdatacrud/${id}`).then(()=>{
+   li.remove();
+  })         
         }
     }
-    localStorage.removeItem('data')
-
 }
 // Filter event
 filter.addEventListener('keyup', filterItems);
