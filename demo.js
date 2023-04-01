@@ -52,7 +52,7 @@ function addItem(e) {
   // var old_Data=JSON.parse(localStorage.getItem('data'));
   // old_Data.push(obj);
   // localStorage.setItem("data",JSON.stringify(old_Data))
-  axios.post("https://crudcrud.com/api/8bacf701aae94fa1a332a36bec6c27d0/firstdatacrud", obj)
+  axios.post("https://crudcrud.com/api/5471e3ed74e648b6b266ce6350133e06/firstdatacrud", obj)
     .then((response) => {
       console.log(response)
     })
@@ -61,7 +61,7 @@ function addItem(e) {
     })
 }
 window.addEventListener("DOMContentLoaded", () => {
-  axios.get("https://crudcrud.com/api/8bacf701aae94fa1a332a36bec6c27d0/firstdatacrud")
+  axios.get("https://crudcrud.com/api/5471e3ed74e648b6b266ce6350133e06/firstdatacrud")
     .then((response) => {
       console.log(response)
       for (var i = 0; i < response.data.length; i++) {
@@ -98,7 +98,7 @@ function removeItem(e) {
       var li = e.target.parentElement;
       const id = li.id;
       //console.log(id)
-      axios.delete(`https://crudcrud.com/api/8bacf701aae94fa1a332a36bec6c27d0/firstdatacrud/${id}`).then(() => {
+      axios.delete(`https://crudcrud.com/api/5471e3ed74e648b6b266ce6350133e06/firstdatacrud/${id}`).then(() => {
         li.remove();
       })
     }
@@ -211,32 +211,49 @@ function filterItems(e) {
 
 itemList.addEventListener('click', edit)
 function edit(e) {
-
-
   if (e.target.classList.contains('edit')) {
-    // console.log(itemId)
+    // console.log( e.target.parentElement)
     const itemId = e.target.parentElement.id;
     let newInput = document.getElementById('item')
     const item = document.getElementById(itemId)
     newInput.value = item.firstChild.textContent
-   // e.target.parentElement.remove();
+    e.target.parentElement.remove();
     // console.log(newInput.value)
     form.addEventListener('click', updateItem)
-    function updateItem(e) {
+    function updateItem(a) {
+      if (a.target.classList.contains('updatebtn')) {
+        // var newItem = document.getElementById('item').value
+        // var newDescription = document.getElementById('description').value
+        // //create new li
+        // var li = document.createElement('li')
+        // li.className = 'list-group-item'
+        // li.id = itemId
+        // //
+        // //create text node with new li 
+        // li.appendChild(document.createTextNode(newItem + ' ' + newDescription));
+        // var deleteBtn = document.createElement('button')
+        // deleteBtn.className = 'btn btn-danger btn-sm float-right delete'
+        // deleteBtn.appendChild(document.createTextNode('x'));
+        // li.appendChild(deleteBtn)
+        // //add edit btn element with new li 
+        // var editbtn = document.createElement('button')
+        // editbtn.className = 'btn btn-warning btn-sm float-right edit'
+        // editbtn.style = 'margin-right: 4px'
+        // editbtn.appendChild(document.createTextNode('edit'))
+        // li.appendChild(editbtn)
 
-      if (e.target.classList.contains('updatebtn')) {
-        //  console.log(e)
-        const updateddata = {
-          name: newInput.value
-        }
-        //  update on crudcrud
-        axios.put(`https://crudcrud.com/api/8bacf701aae94fa1a332a36bec6c27d0/firstdatacrud/${itemId}`, updateddata)
-          .then((response) => {
-            // var li = document.createElement('li')
-            // li.className = 'list-group-item'
-         
-            // li.appendChild(updateddata)
-          })
+        // itemList.appendChild(li);
+        // console.log(li)
+        // form.reset();
+        console.log(e)
+        //     const updateddata = {
+        //       name: newInput.value
+        //     }
+        //     //  update on crudcrud
+        //     axios.put(`https://crudcrud.com/api/5471e3ed74e648b6b266ce6350133e06/firstdatacrud/${itemId}`, updateddata)
+        //       .then((response) => {
+
+        //       })
 
       }
 
@@ -245,4 +262,3 @@ function edit(e) {
 }
 
 
-  
