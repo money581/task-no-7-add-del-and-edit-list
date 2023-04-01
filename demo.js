@@ -222,29 +222,29 @@ function edit(e) {
     form.addEventListener('click', updateItem)
     function updateItem(a) {
       if (a.target.classList.contains('updatebtn')) {
-        // var newItem = document.getElementById('item').value
-        // var newDescription = document.getElementById('description').value
-        // //create new li
-        // var li = document.createElement('li')
-        // li.className = 'list-group-item'
-        // li.id = itemId
-        // //
-        // //create text node with new li 
-        // li.appendChild(document.createTextNode(newItem + ' ' + newDescription));
-        // var deleteBtn = document.createElement('button')
-        // deleteBtn.className = 'btn btn-danger btn-sm float-right delete'
-        // deleteBtn.appendChild(document.createTextNode('x'));
-        // li.appendChild(deleteBtn)
-        // //add edit btn element with new li 
-        // var editbtn = document.createElement('button')
-        // editbtn.className = 'btn btn-warning btn-sm float-right edit'
-        // editbtn.style = 'margin-right: 4px'
-        // editbtn.appendChild(document.createTextNode('edit'))
-        // li.appendChild(editbtn)
+        var newItem = document.getElementById('item').value
+        var newDescription = document.getElementById('description').value
+        //create new li
+        var li = document.createElement('li')
+        li.className = 'list-group-item'
+        li.id = itemId
+        //
+        //create text node with new li 
+        li.appendChild(document.createTextNode(newItem + ' ' + newDescription));
+        var deleteBtn = document.createElement('button')
+        deleteBtn.className = 'btn btn-danger btn-sm float-right delete'
+        deleteBtn.appendChild(document.createTextNode('x'));
+        li.appendChild(deleteBtn)
+        //add edit btn element with new li 
+        var editbtn = document.createElement('button')
+        editbtn.className = 'btn btn-warning btn-sm float-right edit'
+        editbtn.style = 'margin-right: 4px'
+        editbtn.appendChild(document.createTextNode('edit'))
+        li.appendChild(editbtn)
 
-        // itemList.appendChild(li);
-        // console.log(li)
-        // form.reset();
+        itemList.appendChild(li);
+        console.log(li)
+        form.reset();
         console.log(e)
         //     const updateddata = {
         //       name: newInput.value
